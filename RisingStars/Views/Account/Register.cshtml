@@ -1,0 +1,103 @@
+﻿@model RegisterViewModel
+
+<style>
+    .login-page-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        justify-items: center;
+        align-content: center;
+        align-items: center;
+    }
+
+    .login-form {
+        padding: 20px;
+    }
+
+    .login-hero-image {
+        margin: 0 auto; /* Center align the image */
+        max-width: 100%; /* Make image responsive */
+        border-radius: 8px; /* Soften the edges */
+        max-height: 100%; /* Make image responsive */
+        object-fit: cover; /* Cover the entire div */
+
+    }
+
+    .login-content {
+        display: flex;
+        margin: 0 auto;
+        padding: 30px;
+        flex-direction: column;
+        justify-content: center;
+    }
+</style>
+
+<div class="row justify-content-center align-items-center login-page-container">
+    <div class="row login-form">
+
+        <div class="col">
+            <img src="~/images/login-background-image.jpg" alt="Hero Image" class="img-fluid rounded" />
+        </div>
+
+        <div class="bg-light col-md-4 rounded login-content">
+            <img src="~/images/RisingStarLogo.png" alt="Rising Stars Logo" class="img-fluid col-md-2 text-center" />
+            <h2>Welcome to Rising Stars!</h2>
+            <span class="text-muted mb-3">
+                Please register to continue. We are excited to have you on board!
+            </span>
+            <form class="form-horizontal" asp-action="Register">
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+                <div class="form-group">
+                    <label class="control-label" asp-for="Email"></label>
+                    <input class="form-control" asp-for="Email" />
+                    <span class="text-danger" asp-validation-for="Email"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" asp-for="Password"></label>
+                    <input class="form-control" asp-for="Password" />
+                    <span class="text-danger" asp-validation-for="Password"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" asp-for="ConfirmPassword"></label>
+                    <input class="form-control" asp-for="ConfirmPassword" />
+                    <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" asp-for="FirstName"></label>
+                    <input class="form-control" asp-for="FirstName" />
+                    <span class="text-danger" asp-validation-for="FirstName"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" asp-for="LastName"></label>
+                    <input class="form-control" asp-for="LastName" />
+                    <span class="text-danger" asp-validation-for="LastName"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" asp-for="Major"></label>
+                    <input class="form-control" asp-for="Major" />
+                    <span class="text-danger" asp-validation-for="Major"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" asp-for="School"></label>
+                    <input class="form-control" asp-for="School" />
+                    <span class="text-danger" asp-validation-for="School"></span>
+                </div>
+
+                <span class="text-muted">
+                    Already have an account? <a asp-action="Login" class="text-decoration-none">Login</a>
+                </span>
+
+                <div class="form-group mt-2">
+                    <input type="submit" value="Register" class="btn btn-primary btn-block" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

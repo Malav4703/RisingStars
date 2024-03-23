@@ -1,0 +1,50 @@
+﻿@model IEnumerable<RisingStarsData.Entities.Project>
+
+@{
+    ViewData["Title"] = "Projects";
+}
+
+
+<div class="d-flex justify-content-between align-items-end">
+    <div>
+        <h4 class="display-4">Projects</h4>
+        <span class="text-muted">Browse through the inspiring and impactful projects that our students have worked on.</span>
+    </div>
+    <a asp-action="CreateProject" class="btn btn-primary">Create New Project</a>
+</div>
+
+<div class="mt-4">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th class="col">Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var project in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => project.Title)</td>
+                    <td >@Html.DisplayFor(modelItem => project.Description)</td>
+                    <td>@Html.DisplayFor(modelItem => project.StartDate)</td>
+                    <td>@Html.DisplayFor(modelItem => project.EndDate)</td>
+                    <td class="d-flex justify-content-end gap-2">
+                        <a asp-action="Details" class="btn btn-outline-primary" asp-route-id="@project.ProjectId">
+                            <i class="fa fas fa-eye"></i>
+                        </a>
+                        <a asp-action="Edit" class="btn btn-outline-secondary" asp-route-id="@project.ProjectId">
+                            <i class="fa fas fa-edit"></i>
+                        </a>
+                        <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@project.ProjectId">
+                            <i class="fa fas fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<RisingStarsData.Entities.Project>
+
+@{
+    ViewData["Title"] = "My Projects";
+}
+
+<h1>My Projects</h1>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var project in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => project.Title)</td>
+                    <td>@Html.DisplayFor(modelItem => project.Description)</td>
+                    <td>@Html.DisplayFor(modelItem => project.StartDate)</td>
+                    <td>@Html.DisplayFor(modelItem => project.EndDate)</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@project.ProjectId">Details</a> |
+                        <a asp-action="Edit" asp-route-id="@project.ProjectId">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@project.ProjectId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>You do not have any projects at the moment.</p>
+}

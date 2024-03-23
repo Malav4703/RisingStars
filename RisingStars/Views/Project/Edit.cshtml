@@ -1,0 +1,94 @@
+﻿@model RisingStars.Models.ProjectViewModel
+
+@{
+    ViewData["Title"] = "Edit Project";
+}
+
+<style>
+    body {
+        background-color: #ffffff;
+        background-image: radial-gradient(#444cf7 1.4500000000000002px, transparent 1.4500000000000002px), radial-gradient(#444cf7 1.4500000000000002px, #ffffff 1.4500000000000002px);
+        background-size: 58px 58px;
+        background-position: 0 0, 29px 29px;
+    }
+
+    .form-control,
+    .form-select {
+        background-color: #f8f9fb;
+    }
+
+        .form-control:focus,
+        .form-select:focus {
+            background-color: #f8f9fb;
+        }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .task {
+        color: mediumspringgreen;
+    }
+
+    footer {
+        background-color: #f8f9fb;
+    }
+</style>
+
+<div class="container bg-white rounded border p-5 col-md-6 mt-5">
+
+    <div class="d-flex align-items-center gap-3 mb-2">
+
+        <div class="me-3">
+            <i class="fa fas fa-tasks fa-4x text-secondary"></i>
+        </div>
+
+        <div class="">
+            <h1 class="display-4">Edit Project</h1>
+            <p class="text-muted mb-4">Edit the project details and assign members to it.</p>
+        </div>
+
+    </div>
+
+    <hr />
+
+    <form asp-action="Edit" method="post">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+        <input type="hidden" asp-for="CreatorStudentId" />
+
+        <div class="form-group mb-3">
+            <label asp-for="Title" class="form-label">Project Title</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Description" class="form-label">Project Description</label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="row g-3 mb-3">
+            <div class="col-md-6">
+                <label asp-for="StartDate" class="form-label">Start Date</label>
+                <input asp-for="StartDate" class="form-control" type="date" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="EndDate" class="form-label">End Date</label>
+                <input asp-for="EndDate" class="form-control" type="date" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group mb-4">
+            <label for="SelectedStudentIds" class="form-label">Assign Members</label>
+            <select asp-for="SelectedStudentIds" asp-items="@(new SelectList(Model.AvailableStudents, "StudentId", "FullName"))" class="form-select" multiple="multiple"></select>
+            <small id="SelectedStudentIdsHelp" class="form-text text-muted">Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.</small>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>

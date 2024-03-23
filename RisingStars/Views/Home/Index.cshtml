@@ -1,0 +1,82 @@
+﻿@model HomeViewModel
+
+<style>
+    html, body {
+        background-color: #f8f9fa;
+    }
+</style>
+
+<div class="container my-4">
+    <div class="row">
+        <!-- User Info Section -->
+        <div class="card col-md-5 p-4 border-0">
+            <h5 class="display-5">Hi! @Model.Student.FullName✌️</h5>
+            <p class="text-muted">Here's a quick overview of your profile.</p>
+            <hr />
+            <p>
+                <span class="text-muted fw-bold">Email:</span>
+                <span>@Model.Student.Email</span>
+            </p>
+
+            <p>
+                <span class="text-muted fw-bold">Major:</span>
+                <span>@Model.Student.Major</span>
+            </p>
+        </div>
+
+        <!-- Announcements Section -->
+        <div class="col-md-7">
+            <div class="card p-4 border-0">
+                <div class="mb-2">
+                    <span class="display-6">Announcements</span>
+                </div>
+                <hr />
+                <ul class="list-group list-group-flush">
+                    @foreach (var announcement in Model.Announcements)
+                    {
+                        <li class="list-group-item">
+                            <h5 class="mb-1">@announcement.Title</h5>
+                            <p class="mb-1">@announcement.Content</p>
+                            <small>Posted on: @announcement.PostDate.ToString("dd MMM yyyy")</small>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-4">
+        <!-- Projects Section -->
+        <div class="col-12">
+            <div class="card border-0">
+                <div class="px-5 pt-3 d-flex justify-content-between">
+                    <h5 class="display-6">
+                        My Projects
+                    </h5>
+                    <div>
+                        <a href="@Url.Action("Index", "Project")" class="btn btn-primary float-end">View All</a>
+                    </div>
+                </div>
+                <hr />
+                <div class="card-body">
+                    @if (Model.MyProjects.Any())
+                    {
+                        foreach (var project in Model.MyProjects)
+                        {
+                            <div class="mb-3">
+                                <h5 class="card-title">@project.Title</h5>
+                                <p class="card-text">@project.Description</p>
+                                <p class="card-text"><small class="text-muted">Start Date: @project.StartDate.ToString("dd MMM yyyy") - End Date: @project.EndDate.ToString("dd MMM yyyy")</small></p>
+                                <!-- Additional project details can go here -->
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-muted text-center mb-0">You have not been assigned any projects yet.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+﻿@model List<RisingStarsData.Entities.Announcement>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>All Announcements</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@foreach(var item in Model)
+{
+    <table class="table">
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.AnnouncementId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.AnnouncementId }) |
+                @using (Html.BeginForm("Delete", "Announcement", new { id = item.AnnouncementId }, FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Delete" class="btn btn-default" />
+                }
+                
+            </td>
+        </tr>
+    </table>
+}

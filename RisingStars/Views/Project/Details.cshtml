@@ -1,0 +1,78 @@
+﻿@model RisingStarsData.Entities.Project
+
+@{
+    ViewData["Title"] = "Project Details";
+}
+
+<style>
+    body {
+        background-color: #ffffff;
+        background-image: radial-gradient(#444cf7 1.4500000000000002px, transparent 1.4500000000000002px), radial-gradient(#444cf7 1.4500000000000002px, #ffffff 1.4500000000000002px);
+        background-size: 58px 58px;
+        background-position: 0 0, 29px 29px;
+    }
+
+    .form-control,
+    .form-select {
+        background-color: #f8f9fb;
+    }
+
+        .form-control:focus,
+        .form-select:focus {
+            background-color: #f8f9fb;
+        }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .task {
+        color: mediumspringgreen;
+    }
+
+    footer {
+        background-color: #f8f9fb;
+    }
+</style>
+
+
+<div class="container bg-white rounded border p-5 col-md-6 mt-5">
+
+    <div class="d-flex align-items-center gap-3 mb-2">
+
+        <div class="me-3">
+            <i class="fa fas fa-tasks fa-4x text-secondary"></i>
+        </div>
+
+        <div class="">
+            <h1 class="display-5">@Html.DisplayFor(model => model.Title)</h1>
+            <p class="text-muted mb-4">@Html.DisplayFor(model => model.Description)</p>
+        </div>
+
+    </div>
+
+
+    <div class="d-flex justify-content-between">
+        <p><strong>Start Date:</strong> @Html.DisplayFor(model => model.StartDate)</p>
+        <p><strong>End Date:</strong> @Html.DisplayFor(model => model.EndDate)</p>
+    </div>
+
+    <hr />
+
+
+    <div>
+        <h3>Members</h3>
+        <ol>
+            @foreach (var member in Model.Members)
+            {
+                <li>@Html.DisplayFor(modelItem => member.FirstName) @Html.DisplayFor(modelItem => member.LastName) (@Html.DisplayFor(modelItem => member.Email))</li>
+            }
+        </ol>
+    </div>
+
+    <div>
+        <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.ProjectId">Edit</a>
+        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@Model.ProjectId">Delete</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
